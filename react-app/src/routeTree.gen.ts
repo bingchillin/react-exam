@@ -11,9 +11,15 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as TravelCarbonSimulatorImport } from './routes/travel-carbon-simulator'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const TravelCarbonSimulatorRoute = TravelCarbonSimulatorImport.update({
+  path: '/travel-carbon-simulator',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   path: '/',
@@ -31,11 +37,21 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/travel-carbon-simulator': {
+      id: '/travel-carbon-simulator'
+      path: '/travel-carbon-simulator'
+      fullPath: '/travel-carbon-simulator'
+      preLoaderRoute: typeof TravelCarbonSimulatorImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren({ IndexRoute })
+export const routeTree = rootRoute.addChildren({
+  IndexRoute,
+  TravelCarbonSimulatorRoute,
+})
 
 /* prettier-ignore-end */

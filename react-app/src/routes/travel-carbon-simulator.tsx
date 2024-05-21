@@ -9,11 +9,23 @@ function TravelCarbonSimulator() {
   const [selectedOption, setSelectedOption] = useState("");
   const [distance, setDistance] = useState("");
   const [numberOfTravels, setNumberOfTravels] = useState("");
+  const [previousResult, setPreviousResult] = useState<null | number>(null);
 
   const handleValidate = () => {
     const rates = parseFloat(selectedOption) * parseFloat(distance);
     const totalYearlyCarbonCost = rates * parseFloat(numberOfTravels);
     const resultInKg = totalYearlyCarbonCost / 1000;
+
+    if (previousResult !== null) {
+      if (resultInKg > previousResult) {
+        console.log("+");
+      } else if (resultInKg < previousResult) {
+        console.log("-");
+      }
+    }
+
+    setPreviousResult(resultInKg);
+
     console.log(resultInKg + " kg of CO2");
   };
 

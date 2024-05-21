@@ -12,7 +12,9 @@ function Companies() {
     <div>
       {companies.map((company, index) => (
         <div key={index}>
-          <h2>{company.name}</h2>
+          <h2>
+            <a href={`/c/${company.id}`}>{company.name}</a>
+          </h2>
           <p>Id: {company.id}</p>
           <p>Domains: {company.domains.join(", ")}</p>
         </div>

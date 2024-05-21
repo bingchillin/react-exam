@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as TravelCarbonSimulatorImport } from './routes/travel-carbon-simulator'
 import { Route as IndexImport } from './routes/index'
+import { Route as CCompanyidImport } from './routes/c/$company_id'
 
 // Create/Update Routes
 
@@ -23,6 +24,11 @@ const TravelCarbonSimulatorRoute = TravelCarbonSimulatorImport.update({
 
 const IndexRoute = IndexImport.update({
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CCompanyidRoute = CCompanyidImport.update({
+  path: '/c/$company_id',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -44,6 +50,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TravelCarbonSimulatorImport
       parentRoute: typeof rootRoute
     }
+    '/c/$company_id': {
+      id: '/c/$company_id'
+      path: '/c/$company_id'
+      fullPath: '/c/$company_id'
+      preLoaderRoute: typeof CCompanyidImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -52,6 +65,7 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
   TravelCarbonSimulatorRoute,
+  CCompanyidRoute,
 })
 
 /* prettier-ignore-end */

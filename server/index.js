@@ -4,6 +4,7 @@ const express = require("express");
 const http = require("http");
 const WebSocket = require("ws");
 const { z } = require("zod");
+const cors = require('cors');
 
 /**
  * @typedef {Object} Company
@@ -351,6 +352,8 @@ const ReducePayloadSchema = z.object({
 });
 
 const app = express();
+app.use(cors());
+
 app.use(express.json());
 
 /**

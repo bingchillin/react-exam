@@ -8,6 +8,15 @@ export const Route = createFileRoute("/")({
 
 function Companies() {
   const companies = Route.useLoaderData();
-  console.log(companies);
-  return <div>Hello companies!</div>;
+  return (
+    <div>
+      {companies.map((company, index) => (
+        <div key={index}>
+          <h2>{company.name}</h2>
+          <p>Id: {company.id}</p>
+          <p>Domains: {company.domains.join(", ")}</p>
+        </div>
+      ))}
+    </div>
+  );
 }

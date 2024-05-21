@@ -7,8 +7,14 @@ export const Route = createFileRoute("/c/$company_id")({
 });
 
 function Company() {
-  const { company_id } = Route.useParams();
   const company = Route.useLoaderData();
   console.log(company);
-  return <div>Hello /company {company_id}!</div>;
+  return (
+    <div>
+      <h2>{company.name}</h2>
+      <p>{company.description}</p>
+      <p>Website: {company.website}</p>
+      <p>Domains: {company.domains.join(", ")}</p>
+    </div>
+  );
 }
